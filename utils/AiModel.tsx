@@ -1,6 +1,7 @@
-// this is very good way to generate content in the app and helps a lot 
-// in terms of maintainability and scalability 
-// use utils folder and make sure to add Next_Public_ before the Gemini api key 
+// this is very good way to generate content in the 
+// app and helps a lot in terms of maintainability 
+// and scalability use utils folder and make sure to
+//  add Next_Public_ before the Gemini api key 
 // in the .env file
 
 const {
