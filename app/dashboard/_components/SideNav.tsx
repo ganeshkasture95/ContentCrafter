@@ -38,7 +38,7 @@ const SideNav = () => {
   ]
 
   return (
-    <div className="flex flex-col  h-screen p-5 shadow-sm border">
+    <div className="flex flex-col  h-screen p-5 shadow-sm border bg-white ">
       
       <div className="flex justify-center mb-4">
         <Image src="/logo.svg" alt="logo" width={90} height={70} />

@@ -3,8 +3,8 @@ import { Search } from "lucide-react"
 
 const Header = () => {
   return (
-    <div className=" flex justify-between p-3 shadow-sm border-b-2 items-center">
-      <div className=" flex gap-2 items-center p-2 border rounded-lg max-w-screen-2xl">
+    <div className=" flex justify-between p-3 shadow-sm border-b-2 items-center bg-white">
+      <div className=" flex gap-2 items-center p-2 border rounded-lg max-w-screen-2xl bg-white">
         <Search/>
         <input type="text" placeholder="Search" className="w-full outline-none"/>
       </div>

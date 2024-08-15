@@ -17,10 +17,18 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      
-    <html lang="en">
-      <body className={outfit.className}>{children}</body>
-    </html>
+
+      <html lang="en">
+        <body className={outfit.className}>
+          {/* <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            
+          > */}
+            {children}
+          {/* </ThemeProvider> */}
+          </body>
+      </html>
     </ClerkProvider>
   );
 }
