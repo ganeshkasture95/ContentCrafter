@@ -3,6 +3,8 @@
 import Templates from "@/app/(data)/Templates"
 import { TEMPLATE } from "../../_components/TemplateListSection"
 
+import { chatSession } from "@/utils/AiModel"
+import { useState } from "react"
 import FormSection from "../_components/FormSection"
 import OutputSection from "../_components/OutputSection"
 
@@ -11,14 +13,27 @@ interface PROPS {
         'template-slug': string
     }
 }
-
-const CreateNewContent = (props: PROPS) => {
+function CreateNewContent(props: PROPS) {
 
     const selectedTemplate: TEMPLATE | undefined = Templates?.find((item) => item.slug == props.params['template-slug'])
+    const [loading,setLoading]=useState(false)
+    const GenetateAiContent = async (FormData: any) => {
 
-    const GenetateAiContent = (FormData: any) => {
 
-
+        try {
+            setLoading(true)
+            const SelectrdPrompt = selectedTemplate?.aiPrompt
+            const FinalAiPrompt = JSON.stringify(FormData)+", "+ SelectrdPrompt
+    
+            const result = await chatSession.sendMessage(FinalAiPrompt);
+            console.log(result.response.text());
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+        }finally{
+            setLoading(false)
+        }
+      
 
     }
 
@@ -29,7 +44,7 @@ const CreateNewContent = (props: PROPS) => {
             </Link> */}
 
             <div className=" grid grid-cols-1  md:grid-cols-3 gap-5 p-5">
-                <FormSection selectedTemplate={selectedTemplate} userFormInput={(v: any) => GenetateAiContent(v)} />
+                <FormSection selectedTemplate={selectedTemplate} userFormInput={(v: any) => GenetateAiContent(v)} loading={loading} />
                 <div className=" col-span-2 ">
                     <OutputSection />
                 </div>

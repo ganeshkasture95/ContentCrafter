@@ -6,19 +6,21 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Loader2Icon } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import { TEMPLATE } from "../../_components/TemplateListSection"
 
 interface PROPS {
   selectedTemplate?: TEMPLATE,
-  userFormInput: any
+  userFormInput: any,
+  loading:boolean
 }
 
 
 
 
-const FormSection = ({ selectedTemplate ,userFormInput}: PROPS) => {
+const FormSection = ({ selectedTemplate ,userFormInput,loading}: PROPS) => {
 
 
   const [formData, setFormData] = useState<any>()
@@ -58,7 +60,7 @@ const FormSection = ({ selectedTemplate ,userFormInput}: PROPS) => {
           </div>
         ))}
 
-        <Button type="submit" className="w-full py-6">Genetate Content</Button>
+        <Button type="submit" className="w-full py-6" disabled={loading} >{loading&& <Loader2Icon className=" animate-spin"/>}Genetate Content</Button>
       </form>
     </div>
   )
