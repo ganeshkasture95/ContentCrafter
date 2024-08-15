@@ -3,11 +3,38 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 import { Editor } from '@toast-ui/react-editor';
 import { Copy } from 'lucide-react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-const OutputSection = () => {
+interface PROPS {
+  aiOutput: string
+}
 
-  const editorRef:any = useRef()
+const OutputSection = ({ aiOutput }: PROPS) => {
+
+  const editorRef: any = useRef(null)
+
+  useEffect(() => {
+    // const editorInstance = editorRef.current.getInstance()
+    // editorInstance.setMarkdown(aiOutput)
+
+    // const editorInstance = editorRef.current?.getInstance();
+    // if (editorInstance) {
+    //   editorInstance.setMarkdown(aiOutput);
+    // }
+
+
+    const editorInstance = editorRef.current?.getInstance();
+    if (editorInstance) {
+      try {
+        editorInstance.setMarkdown(aiOutput);
+      } catch (error) {
+        console.error('Error setting markdown:', error);
+      }
+    }
+
+    // editorRef.current.getInstance().setMarkdown(aiOutput)
+  }, [aiOutput])
+
 
   return (
     <div className='bg-white shadow-lg border rounded-lg'>
